@@ -1,3 +1,4 @@
+<!-- Source: ChatGPT -->
 <div data-widget-area="header">
     {{{ each widgets.header }}}
     {{widgets.header.html}}
@@ -8,14 +9,13 @@
     <!-- Main Content Area -->
     <div class="{{{ if widgets.sidebar.length }}}col-lg-9 col-sm-12{{{ else }}}col-lg-12{{{ end }}}">
         
-        <!-- Source: ChatGPT -->
-		<!-- Queue Header -->
+        <!-- Queue Header -->
         <h1>Office Hours Queue</h1>
         <p>Manage the office hours queue below. Join or leave as needed.</p>
 
         <!-- Queue Status -->
         <h2>Queue Status</h2>
-        <p id="queue-length">Loading queue data...</p>
+        <p id="queue-length">There are <span id="queue-count">0</span> people in the queue.</p>
 
         <!-- List of People in Queue -->
         <ul id="queue-items" class="list-unstyled">
@@ -49,38 +49,43 @@
 
 <!-- Script to manage queue interactions -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const queueLengthElem = document.getElementById('queue-length');
+    document.addEventListener('DOMContentLoaded', () => {
+        const queueLengthElem = document.getElementById('queue-count');
         const queueItemsElem = document.getElementById('queue-items');
         const joinQueueBtn = document.getElementById('join-queue-btn');
         const leaveQueueBtn = document.getElementById('leave-queue-btn');
 
-        const queue = ['Student 1', 'Student 2', 'Student 3']; // Simulated queue data
+        let queue = ['Student 1', 'Student 2', 'Student 3']; // Simulated queue data
 
+        // Function to update the queue status
         function updateQueue() {
-            queueLengthElem.innerText = `There are ${queue.length} people in the queue.`;
-            queueItemsElem.innerHTML = '';
+            queueLengthElem.innerText = queue.length.toString(); // Ensure queue length is set as plain text
+            queueItemsElem.innerHTML = ''; // Clear the current list
+
+            // Add each person in the queue to the list
             queue.forEach((item) => {
                 const li = document.createElement('li');
                 li.textContent = item;
                 queueItemsElem.appendChild(li);
             });
+
+            // Disable the Leave button if queue is empty
+            leaveQueueBtn.disabled = queue.length === 0;
         }
 
-        // Update queue on page load
+        // Initial queue update when the page loads
         updateQueue();
 
         // Join queue button functionality
-        joinQueueBtn.addEventListener('click', function () {
-            queue.push('New Student');
+        joinQueueBtn.addEventListener('click', () => {
+            queue.push(`New Student ${queue.length + 1}`); // Add a new student
             updateQueue();
         });
 
         // Leave queue button functionality
-        leaveQueueBtn.addEventListener('click', function () {
-            queue.pop();
+        leaveQueueBtn.addEventListener('click', () => {
+            queue.pop(); // Remove the last person from the queue
             updateQueue();
         });
     });
 </script>
-

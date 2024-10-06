@@ -11,7 +11,7 @@
         
         <!-- Queue Header -->
         <h1>Office Hours Queue</h1>
-        <p>Manage the office hours queue below. Join or leave as needed.</p>
+        <p>Welcome to the OH Queue. Join or leave as needed.</p>
 
         <!-- Queue Status -->
         <h2>Queue Status</h2>

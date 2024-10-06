@@ -42,6 +42,7 @@
 				</ul>
 			</div>
 		</div>
+			<!-- Source: ChatGPT -->
 			<input type="hidden" id="anonymousInput" value="false" />
 
 			<button id="anonymousButton" class="btn btn-sm btn-outline-secondary fw-bold" data-clicked="false" onclick="toggleButton()">

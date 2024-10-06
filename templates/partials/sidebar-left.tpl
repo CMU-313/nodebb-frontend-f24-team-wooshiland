@@ -24,7 +24,7 @@
 		{{{ end }}}
 		{{{ end }}}
 
-			<!-- Source: ChatGPT -->
+		<!-- Source: ChatGPT -->
 		<li class="nav-item mx-2" title="OH Queue">
 			<a class="nav-link navigation-link d-flex gap-2 justify-content-between align-items-center" href="/oh-queue">
 				<span class="d-flex gap-2 align-items-center text-nowrap truncate-open">

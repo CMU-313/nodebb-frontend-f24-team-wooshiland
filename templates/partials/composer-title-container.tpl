@@ -75,6 +75,6 @@ function toggleButton() {
     }
 
     // Optionally log the anonymous field for debugging
-    console.log('Anonymous field:', anonymousInput.value);
+    //console.log('Anonymous field:', anonymousInput.value);
 }
 </script>

@@ -8,7 +8,9 @@
 <div class="d-flex align-items-start gap-3">
 	<div class="bg-body d-none d-sm-block rounded-circle" style="outline: 2px solid var(--bs-body-bg);">
 		{{{ if anonTrue(./anonymous) }}}
+		<!-- dont display user icon when anonymous is true-->
 		{{{ else }}}
+		<!-- display user icone when anonymous is false -->
 		<a class="d-inline-block position-relative text-decoration-none" href="{{{ if ./user.userslug }}}{config.relative_path}/user/{./user.userslug}{{{ else }}}#{{{ end }}}" aria-label="[[aria:user-avatar-for, {./user.username}]]">
 			{buildAvatar(posts.user, "48px", true, "", "user/picture")}
 			<span component="user/status" class="position-absolute translate-middle-y border border-white border-2 rounded-circle status {posts.user.status}"><span class="visually-hidden">[[global:{posts.user.status}]]</span></span>
@@ -27,8 +29,10 @@
 				</a>
 			</div>
 			{{{ if anonTrue(./anonymous) }}}
+			<!-- display "Anonymous User" when anonymous is true -->
 			<a class="fw-bold text-nowrap" style="margin-left: 20px;">Anonymous User</a>
 			{{{ else }}}
+			<!-- display user id name when anonymous is true -->
 			<a class="fw-bold text-nowrap" href="{{{ if ./user.userslug }}}{config.relative_path}/user/{./user.userslug}{{{ else }}}#{{{ end }}}" data-username="{posts.user.username}" data-uid="{posts.user.uid}">{posts.user.displayname}</a>
 			{{{ end }}}
 
@@ -65,10 +69,12 @@
 			</div>
 		</div>
 		{{{ if anonTrue(./anonymous) }}}
+		<!-- shift the content of the post to the right when anonymous for formatting purpose -->
 		<div class="content mt-2 text-break" component="post/content" itemprop="text" style="margin-left: 20px;">
 			{posts.content}
 		</div>
 		{{{ else }}}
+		<!-- dont shift and retain the original content format when anonymous is false -->
 		<div class="content mt-2 text-break" component="post/content" itemprop="text">
 			{posts.content}
 		</div>

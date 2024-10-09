@@ -7,10 +7,13 @@
 {{{ end }}}
 <div class="d-flex align-items-start gap-3">
 	<div class="bg-body d-none d-sm-block rounded-circle" style="outline: 2px solid var(--bs-body-bg);">
+		{{{ if anonTrue(./anonymous) }}}
+		{{{ else }}}
 		<a class="d-inline-block position-relative text-decoration-none" href="{{{ if ./user.userslug }}}{config.relative_path}/user/{./user.userslug}{{{ else }}}#{{{ end }}}" aria-label="[[aria:user-avatar-for, {./user.username}]]">
 			{buildAvatar(posts.user, "48px", true, "", "user/picture")}
 			<span component="user/status" class="position-absolute translate-middle-y border border-white border-2 rounded-circle status {posts.user.status}"><span class="visually-hidden">[[global:{posts.user.status}]]</span></span>
 		</a>
+		{{{ end }}}
 	</div>
 	<div class="post-container d-flex flex-grow-1 flex-column w-100" style="min-width:0;">
 		<div class="d-flex align-items-center gap-1 flex-wrap w-100 post-header mt-1" itemprop="author" itemscope itemtype="https://schema.org/Person">
@@ -23,8 +26,11 @@
 					<span component="user/status" class="position-absolute translate-middle-y border border-white border-2 rounded-circle status {posts.user.status}"><span class="visually-hidden">[[global:{posts.user.status}]]</span></span>
 				</a>
 			</div>
-
+			{{{ if anonTrue(./anonymous) }}}
+			<a class="fw-bold text-nowrap" style="margin-left: 20px;">Anonymous User</a>
+			{{{ else }}}
 			<a class="fw-bold text-nowrap" href="{{{ if ./user.userslug }}}{config.relative_path}/user/{./user.userslug}{{{ else }}}#{{{ end }}}" data-username="{posts.user.username}" data-uid="{posts.user.uid}">{posts.user.displayname}</a>
+			{{{ end }}}
 
 			{{{ each posts.user.selectedGroups }}}
 			{{{ if posts.user.selectedGroups.slug }}}
@@ -58,10 +64,15 @@
 				<a href="{config.relative_path}/post/{./pid}" class="post-index text-muted d-none d-md-inline">#{increment(./index, "1")}</a>
 			</div>
 		</div>
-
+		{{{ if anonTrue(./anonymous) }}}
+		<div class="content mt-2 text-break" component="post/content" itemprop="text" style="margin-left: 20px;">
+			{posts.content}
+		</div>
+		{{{ else }}}
 		<div class="content mt-2 text-break" component="post/content" itemprop="text">
 			{posts.content}
 		</div>
+		{{{ end }}}
 	</div>
 </div>
 
